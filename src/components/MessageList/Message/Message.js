@@ -1,13 +1,16 @@
-import React from 'react'
+import React from "react";
 
-const Message = (props) => {
-
-    return(
-        <div className="messageInfo">
-            <p>Est pariatur culpa incididunt nulla fugiat proident incididunt mollit ullamco est Lorem.</p>
-            <p>13:55</p>
+const Message = props => {
+  return (
+    <div className="middleRightDiv">
+      {Array.from(props.message).map((message, index) => (
+        <div className="userMessage">
+          <p>{message.message}</p>
+          <span>{message.time}</span>
         </div>
-    );
-}
+      ))}
+    </div>
+  );
+};
 
 export default Message;

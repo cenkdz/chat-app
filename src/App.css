@@ -3,9 +3,9 @@
   height: 600px;
   width: 1150px;
   margin: 0 auto;
-  -webkit-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.75);
-  box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.75);
 }
 
 .topDiv {
@@ -43,13 +43,11 @@
   width: 30%;
 }
 
-
 .middleRightDiv {
   float: right;
   border: 1px solid rgba(154, 154, 154, 0.21);
   height: 485px;
   width: 69.64%;
-  
 }
 
 .newMessageDiv {
@@ -58,43 +56,62 @@
   height: 60px;
   border: 1px solid rgba(154, 154, 154, 0.21);
   background-color: rgba(176, 171, 171, 0.18);
-  
 }
 
-.newMessageDiv input{
-  
-  width:655px;
-  height:40px;
-  margin-left:20px;
-  margin-right:20px;
-  margin-top:7px;
-  border:hidden;
+.newMessageDiv input {
+  width: 655px;
+  height: 40px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 7px;
+  border: hidden;
   border-radius: 10px 10px 10px 10px;
- 
 }
 
-input[type=text]{
-  padding-left:5px;
-  font-family:Tahoma;
-  font-size:15px;
+input[type="text"] {
+  padding-left: 5px;
+  font-family: Tahoma;
+  font-size: 15px;
 }
 
 .lastMessage {
-  font-size:13px;
-  font-family:Tahoma;
-  margin-right:10px;
-  float:right;
+  font-size: 13px;
+  font-family: Tahoma;
+  margin-right: 10px;
+  float: right;
 }
 
 .contactName {
-  font-size:15px;
-  font-family:Tahoma;
-  margin-left:10px;
+  font-size: 15px;
+  font-family: Tahoma;
+  margin-left: 10px;
   font-weight: bold;
 }
 
 .contactList img {
-  margin-left:10px;
-  margin-top:1px;
-  float:left
+  margin-left: 10px;
+  margin-top: 1px;
+  float: left;
+}
+
+p {
+  border: 1px solid;
+  border-radius: 8px;
+  margin-bottom: 0;
+}
+
+.messageInfo {
+  margin-right: 400px;
+  margin-left: 400px;
+}
+.messageInfo span {
+  margin-left: 310px;
+}
+
+.userMessage span {
+  padding-left: 360px;
+}
+
+.userMessage {
+  padding-left: 400px;
 }
