@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "./App.css";
 
 //Possible component imports
@@ -7,11 +7,11 @@ import ContactList from "./components/ContactList/ContactList";
 import MessageList from "./components/MessageList/MessageList";
 import FormInfo from "./components/FormInfo/FormInfo";
 
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
       <div className="container">
-        <header classname="App-header">
+        <header className="App-header">
           <FormInfo />
         </header>
         <div className="topDiv">

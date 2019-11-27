@@ -5,27 +5,30 @@ import MessageBox from "../MessageBox/MessageBox";
 class MessageList extends React.Component {
   constructor(props) {
     super(props);
-    this.setMessages = this.setMessages.bind(this);
+    this.storeMessages = this.storeMessages.bind(this);
     this.state = {
       Messages: []
     };
   }
 
-  setMessages(message, times) {
+  storeMessages(messageInput, currentTime) {
     this.setState({
-      Messages: [...this.state.Messages, { message: message, time: times }]
+      Messages: [
+        ...this.state.Messages,
+        { message: messageInput, time: currentTime }
+      ]
     });
   }
 
   render() {
     return (
       <div className="messageList">
-        <div className="messageInfo">
+        <div className="contactMessage">
           <p>Dummy message from Steve</p>
           <span>10:30</span>
         </div>
         <Message message={this.state.Messages} />
-        <MessageBox click={this.setMessages} />
+        <MessageBox enterHandler={this.storeMessages} />
       </div>
     );
   }

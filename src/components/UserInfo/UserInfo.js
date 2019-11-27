@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 
 const UserInfo = props => {
-  return <div className="topLeft"></div>;
+  return null;
 };
 
 export default UserInfo;

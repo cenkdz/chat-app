@@ -3,8 +3,8 @@ import React from "react";
 const Message = props => {
   return (
     <div className="middleRightDiv">
-      {Array.from(props.message).map(message => (
-        <div className="userMessage">
+      {props.message.map((message, index) => (
+        <div className="userMessage" key={index}>
           <p>{message.message}</p>
           <span>{message.time}</span>
         </div>

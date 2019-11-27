@@ -5,11 +5,6 @@ class MessageBox extends React.Component {
     super(props);
 
     this.keyPress = this.keyPress.bind(this);
-
-    this.state = {
-      value: "",
-      time: ""
-    };
   }
 
   keyPress(e) {
@@ -18,7 +13,7 @@ class MessageBox extends React.Component {
 
       this.setState({ value: e.target.value });
 
-      this.props.click(
+      this.props.enterHandler(
         e.target.value,
         mTime.getHours() + ":" + mTime.getMinutes()
       );
