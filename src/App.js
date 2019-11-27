@@ -5,23 +5,9 @@ import "./App.css";
 import UserInfo from "./components/UserInfo/UserInfo";
 import ContactList from "./components/ContactList/ContactList";
 import MessageList from "./components/MessageList/MessageList";
-import MessageBox from "./components/MessageBox/MessageBox";
 import FormInfo from "./components/FormInfo/FormInfo";
 
 class App extends Component {
-  state = {
-    messages: [
-      {
-        messageh: "New Message",
-        time:
-          new Date().getHours() +
-          "+" +
-          Date().getMinutes +
-          "+" +
-          Date().getSeconds
-      }
-    ]
-  };
   render() {
     return (
       <div className="container">
@@ -30,9 +16,7 @@ class App extends Component {
         </header>
         <div className="topDiv">
           <UserInfo />
-          <div className="topRight">
-            <ContactList />
-          </div>
+          <div className="topRight"></div>
         </div>
         <div className="middleDiv">
           <div className="middleLeftDiv">

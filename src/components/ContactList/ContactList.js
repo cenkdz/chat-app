@@ -1,12 +1,8 @@
-import React, { Component } from 'react'
-import Contact from './Contact/Contact'
+import React from "react";
+import Contact from "../Contact/Contact";
 
-const ContactList = (props) => {
-    return(
-        <Contact/>
-    ); 
-}
+const ContactList = props => {
+  return <Contact />;
+};
 
 export default ContactList;
-
-

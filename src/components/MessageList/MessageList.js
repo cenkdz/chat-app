@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import Message from "./Message/Message";
+import React from "react";
+import Message from "../Message/Message";
 import MessageBox from "../MessageBox/MessageBox";
 
-class MessageList extends Component {
+class MessageList extends React.Component {
   constructor(props) {
     super(props);
     this.setMessages = this.setMessages.bind(this);
@@ -12,7 +12,6 @@ class MessageList extends Component {
   }
 
   setMessages(message, times) {
-    console.log("hello:" + message);
     this.setState({
       Messages: [...this.state.Messages, { message: message, time: times }]
     });
@@ -22,8 +21,8 @@ class MessageList extends Component {
     return (
       <div className="messageList">
         <div className="messageInfo">
-          <p>asdasdasdas</p>
-          <span>10:20</span>
+          <p>Dummy message from Steve</p>
+          <span>10:30</span>
         </div>
         <Message message={this.state.Messages} />
         <MessageBox click={this.setMessages} />
