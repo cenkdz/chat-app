@@ -1,0 +1,12 @@
+/templates/
+/examples/
+/test/
+/.idea/
+/browser/
+.jshintrc
+.travis.yml
+.npmignore
+Gruntfile.js
+yarn.lock
+.size-limit
+.editorconfig
