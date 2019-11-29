@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import uuid from 'uuid';
 import shortid from '../../libs/shortid';
 
 
@@ -8,7 +9,7 @@ import shortid from '../../libs/shortid';
 const Message = (props) => (
   <div className="middleRightDiv">
     {props.messages.map((message) => (
-      <div className="userMessage" key={shortid.generate()}>
+      <div className="userMessage" id={uuid()} key={uuid()}>
         <p>{message.message}</p>
         <span>{message.time}</span>
       </div>
