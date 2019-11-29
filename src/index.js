@@ -16,21 +16,21 @@ const routing = (
     <div>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/">Login</Link>
         </li>
         <li>
           <Link to="/forms">Forms</Link>
         </li>
         <li>
-          <Link to="/login">Login</Link>
+          <Link to="/home">Home</Link>
         </li>
       </ul>
       <hr />
       <Switch>
-        <Route exact path="/" component={App} />
+        <Route exact path="/" component={Login} />
         <Route exact path="/forms" component={Forms} />
         <Route path="/forms/:formid" component={Form} />
-        <Route path="/login" component={Login} />
+        <Route path="/home" component={App} />
         <Route component={Notfound} />
       </Switch>
     </div>
