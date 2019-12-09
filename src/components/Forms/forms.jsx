@@ -1,27 +1,46 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Utils from '../../utils/utils';
+import Requests from '../../apiRequests';
+import Form from '../Form/Form';
 
 class Forms extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      forms: [],
+    };
+  }
+
   componentDidMount() {
     Utils.isAuthorized();
+
+    this.setForms();
+  }
+
+  async setForms() {
+    const formData = await Requests.getForms();
+
+    this.setState({
+      forms: [...formData[0].data.content],
+    });
   }
 
   render() {
     return (
+
+
       <div>
         <h1>Forms</h1>
         <strong>Select a Form</strong>
         <ul>
-          <li>
-            <Link to="/forms/1">Form 1 </Link>
-          </li>
-          <li>
-            <Link to="/forms/2">Form 2 </Link>
-          </li>
-          <li>
-            <Link to="/forms/3">Form 3 </Link>
-          </li>
+          {this.state.forms.map((form) => (
+            <div>
+              <li>
+                <Link to={`/forms/${form.id}`}>{form.title}</Link>
+              </li>
+            </div>
+          ))}
         </ul>
         <hr />
       </div>

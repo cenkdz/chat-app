@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+const apiKEY = '8121104cddfc11a71346739e70484310';
+
 
 const Requests = {
 
@@ -17,6 +19,24 @@ const Requests = {
       .catch((response) => { data.push(response); });
 
     return data[0];
+  },
+
+
+  async getForms() {
+    const data = [];
+    await axios.get(`https://api.jotform.com/user/forms?apikey=${apiKEY}&orderby=id`)
+      .then((response) => {
+        // handle success
+        console.log(response);
+        data.push(response);
+      })
+      .catch((error) => {
+        // handle error
+        console.log(error);
+        data.push(error);
+      });
+
+    return data;
   },
 
 };
