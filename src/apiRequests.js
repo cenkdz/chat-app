@@ -4,21 +4,19 @@ import axios from 'axios';
 const Requests = {
 
 
-  login(bodyFormData) {
-    axios({
+  async login(bodyFormData) {
+    const data = [];
+    await axios({
       method: 'post',
       url: 'http://api.jotform.com//user/login',
       data: bodyFormData,
-      headers: { 'Content-Type': 'multipart/form-data' },
     })
       .then((response) => {
-        // handle success
-        console.log(response);
+        data.push(response);
       })
-      .catch((response) => {
-        // handle error
-        console.log(response);
-      });
+      .catch((response) => { data.push(response); });
+
+    return data[0];
   },
 
 };

@@ -1,20 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {
-  Route, Link, BrowserRouter as Router, Switch,
+  Route, BrowserRouter as Router, Switch,
 } from 'react-router-dom';
 import './index.css';
 import App from './App';
-import Login from './login';
-import Forms from './forms';
-import Form from './Form';
+import Login from './components/Login/login';
+import Forms from './components/Forms/forms';
+import Form from './components/Form/Form';
 import * as serviceWorker from './serviceWorker';
 import Notfound from './notfound';
 
 const routing = (
   <Router>
     <div>
-      <ul>
+      {/* <ul>
         <li>
           <Link to="/">Login</Link>
         </li>
@@ -24,7 +24,7 @@ const routing = (
         <li>
           <Link to="/home">Home</Link>
         </li>
-      </ul>
+      </ul> */}
       <hr />
       <Switch>
         <Route exact path="/" component={Login} />

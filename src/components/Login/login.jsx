@@ -1,6 +1,6 @@
 import React from 'react';
-import Request from './apiRequests';
-import Requests from './apiRequests';
+import Requests from '../../apiRequests';
+import Utils from '../../utils/utils';
 
 class Login extends React.Component {
   constructor({ props }) {
@@ -10,9 +10,13 @@ class Login extends React.Component {
     this.handleChange = this.handleChange.bind(this);
 
     this.state = {
-      username: null,
-      password: null,
+      username: '',
+      password: '',
     };
+  }
+
+  componentDidMount() {
+    Utils.isAuthorized();
   }
 
   handleChange({ target }) {
@@ -21,15 +25,23 @@ class Login extends React.Component {
     });
   }
 
-  login() {
+  async login() {
     const bodyFormData = new FormData();
 
     bodyFormData.set('username', this.state.username);
 
     bodyFormData.set('password', this.state.password);
 
+    const response = await Requests.login(bodyFormData);
 
-    Requests.login(bodyFormData);
+    console.log(response);
+    if (response.data.responseCode === 200) {
+      localStorage.setItem('email', response.data.content.email);
+      localStorage.setItem('name', response.data.content.name);
+      localStorage.setItem('username', response.data.content.username);
+    }
+
+    window.location.href = '/forms';
   }
 
   render() {
@@ -51,7 +63,7 @@ class Login extends React.Component {
           onChange={this.handleChange}
         />
 
-        <button type="button" value="LOGIN" onClick={this.login}>LOGIN</button>
+        <button type="button" onClick={this.login}>LOGIN</button>
       </div>
     );
   }

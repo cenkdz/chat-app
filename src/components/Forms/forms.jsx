@@ -1,13 +1,17 @@
 import React from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Utils from '../../utils/utils';
 
 class Forms extends React.Component {
+  componentDidMount() {
+    Utils.isAuthorized();
+  }
+
   render() {
-    const { url } = this.props.match;
     return (
       <div>
         <h1>Forms</h1>
-        <strong>select a Form</strong>
+        <strong>Select a Form</strong>
         <ul>
           <li>
             <Link to="/forms/1">Form 1 </Link>

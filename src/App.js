@@ -1,11 +1,11 @@
-import React from "react";
-import "./App.css";
+import React from 'react';
+import './App.css';
 
-//Possible component imports
-import UserInfo from "./components/UserInfo/UserInfo";
-import ContactList from "./components/ContactList/ContactList";
-import MessageList from "./components/MessageList/MessageList";
-import FormInfo from "./components/FormInfo/FormInfo";
+// Possible component imports
+import UserInfo from './components/UserInfo/UserInfo';
+import ContactList from './components/ContactList/ContactList';
+import MessageList from './components/MessageList/MessageList';
+import FormInfo from './components/FormInfo/FormInfo';
 
 class App extends React.Component {
   render() {
@@ -16,7 +16,7 @@ class App extends React.Component {
         </header>
         <div className="topDiv">
           <UserInfo />
-          <div className="topRight"></div>
+          <div className="topRight" />
         </div>
         <div className="middleDiv">
           <div className="middleLeftDiv">
