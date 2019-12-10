@@ -29,8 +29,7 @@ const routing = (
       <Switch>
         <Route exact path="/" component={Login} />
         <Route exact path="/forms" component={Forms} />
-        <Route path="/forms/:formid" component={Form} />
-        <Route path="/home" component={App} />
+        <Route path="/forms/:formid" component={App} />
         <Route component={Notfound} />
       </Switch>
     </div>

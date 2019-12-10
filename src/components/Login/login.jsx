@@ -16,7 +16,7 @@ class Login extends React.Component {
   }
 
   componentDidMount() {
-    Utils.isAuthorized();
+    // Utils.isAuthorized();
   }
 
   handleChange({ target }) {
@@ -28,11 +28,12 @@ class Login extends React.Component {
   async login() {
     const bodyFormData = new FormData();
 
-    bodyFormData.set('username', this.state.username);
+    bodyFormData.append('username', this.state.username);
 
-    bodyFormData.set('password', this.state.password);
+    bodyFormData.append('password', this.state.password);
 
     const response = await Requests.login(bodyFormData);
+    console.log('Login response: ', response);
 
     console.log(response);
     if (response.data.responseCode === 200) {
@@ -41,7 +42,7 @@ class Login extends React.Component {
       localStorage.setItem('username', response.data.content.username);
     }
 
-    window.location.href = '/forms';
+    // window.location.href = '/forms';
   }
 
   render() {
