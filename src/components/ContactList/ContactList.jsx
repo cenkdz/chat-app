@@ -1,5 +1,6 @@
 import React from 'react';
 import Requests from '../../apiRequests';
+import Contact from '../Contact/Contact';
 
 class ContactList extends React.Component {
   constructor(props) {
@@ -8,15 +9,11 @@ class ContactList extends React.Component {
       formID: this.props.formID,
       contacts: [],
     };
-
-    this.getNamesFromSubmissions = this.getNamesFromSubmissions.bind(this);
-    this.getContacts = this.getContacts.bind(this);
   }
 
   componentDidMount() {
     this.getNamesFromSubmissions();
   }
-
 
   async getContacts() {
     const submissionData = await Requests.getFormSubmissions(this.props.formID);
@@ -55,10 +52,7 @@ class ContactList extends React.Component {
     return (
       <div>
         {this.state.contacts.map((contact, index) => (
-          <div key={index} className="contactInfo">
-            <img alt="" height="50" width="50" />
-            <span className="contactName">{contact}</span>
-          </div>
+          <Contact contact={contact} />
         ))}
       </div>
     );

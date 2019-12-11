@@ -16,15 +16,13 @@ class MessageList extends React.Component {
     this.setState({
       messages: [...this.state.messages, { message: messageInput, time: currentTime }],
     });
-
-    console.log('Messages', this.state.messages);
   }
 
   render() {
     return (
       <div className="messageList">
         <div className="contactMessage">
-          <p>Dummy message from Steve</p>
+          <p>Dummy message from ...</p>
           <span>10:30</span>
         </div>
         <Message messages={this.state.messages} />

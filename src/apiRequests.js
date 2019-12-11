@@ -14,31 +14,29 @@ function getAppKey() {
 const Requests = {
 
   async login(bodyFormData) {
-    if (getAppKey()) {
-      const data = [];
+    const data = [];
 
-      await axios({
-        method: 'post',
-        url: 'https://api.jotform.com//user/login',
-        data: bodyFormData,
-        config: {
-          headers: {
-            'Content-Type': 'multipart/form-data',
+    await axios({
+      method: 'post',
+      url: 'https://api.jotform.com//user/login',
+      data: bodyFormData,
+      config: {
+        headers: {
+          'Content-Type': 'multipart/form-data',
           // eslint-disable-next-line quote-props
-          },
         },
+      },
+    })
+      .then((response) => {
+        if (Utils.validateResponse(response) !== false) {
+          data.push(response);
+          localStorage.setItem('appKey', response.data.content.appKey);
+          console.log('asdjhbasdkjhasbdjkhasbduhsad');
+        }
       })
-        .then((response) => {
-          if (Utils.validateResponse(response) !== false) {
-            data.push(response);
-            localStorage.setItem('appKey', response.data.content.appKey);
-            console.log('asdjhbasdkjhasbdjkhasbduhsad');
-          }
-        })
-        .catch((response) => { });
+      .catch((response) => { });
 
-      return data[0];
-    }
+    return data[0];
   },
 
 

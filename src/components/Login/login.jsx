@@ -38,7 +38,7 @@ class Login extends React.Component {
 
     console.log(response);
 
-    window.location.href = '/forms';
+    // window.location.href = '/forms';
   }
 
   render() {
