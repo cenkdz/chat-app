@@ -16,6 +16,8 @@ class MessageList extends React.Component {
     this.setState({
       messages: [...this.state.messages, { message: messageInput, time: currentTime }],
     });
+
+    console.log('Messages', this.state.messages);
   }
 
   render() {

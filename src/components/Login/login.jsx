@@ -1,6 +1,5 @@
 import React from 'react';
 import Requests from '../../apiRequests';
-import Utils from '../../utils/utils';
 
 class Login extends React.Component {
   constructor({ props }) {
@@ -32,17 +31,14 @@ class Login extends React.Component {
 
     bodyFormData.append('password', this.state.password);
 
+    bodyFormData.append('appName', 'ChatApp');
+
     const response = await Requests.login(bodyFormData);
     console.log('Login response: ', response);
 
     console.log(response);
-    if (response.data.responseCode === 200) {
-      localStorage.setItem('email', response.data.content.email);
-      localStorage.setItem('name', response.data.content.name);
-      localStorage.setItem('username', response.data.content.username);
-    }
 
-    // window.location.href = '/forms';
+    window.location.href = '/forms';
   }
 
   render() {

@@ -4,10 +4,8 @@ import './App.css';
 // Possible component imports
 import UserInfo from './components/UserInfo/UserInfo';
 import ContactList from './components/ContactList/ContactList';
-import Contact from './components/Contact/Contact';
 import MessageList from './components/MessageList/MessageList';
 import FormInfo from './components/FormInfo/FormInfo';
-import Form from './components/Form/Form';
 
 class App extends React.Component {
   constructor(props) {
@@ -31,7 +29,7 @@ class App extends React.Component {
         </div>
         <div className="middleDiv">
           <div className="middleLeftDiv">
-            <Contact formID={this.state.formID} />
+            <ContactList formID={this.state.formID} />
           </div>
           <MessageList />
         </div>

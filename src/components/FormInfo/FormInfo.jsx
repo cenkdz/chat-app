@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Header = () => (
+const FormInfo = () => (
   <div className="navbar">
     <div className="dropdown">
       <div className="formInfo">
@@ -17,4 +17,4 @@ const Header = () => (
   </div>
 );
 
-export default Header;
+export default FormInfo;

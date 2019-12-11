@@ -34,8 +34,8 @@ class Forms extends React.Component {
         <h1>Forms</h1>
         <strong>Select a Form</strong>
         <ul>
-          {this.state.forms.map((form) => (
-            <div>
+          {this.state.forms.map((form, index) => (
+            <div key={index}>
               <li>
                 <Link to={`/forms/${form.id}`}>{form.title}</Link>
               </li>
