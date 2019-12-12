@@ -6,9 +6,15 @@ class ContactList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      formID: this.props.formID,
       contacts: [],
+      ID: [],
     };
+    console.log('This is props of ContactList');
+    console.log(props);
+    if (props.forms.location.state !== undefined) {
+      console.log(props.forms.location.state.formID);
+      this.state.ID = props.forms.location.state.formID;
+    }
   }
 
   componentDidMount() {
@@ -16,7 +22,7 @@ class ContactList extends React.Component {
   }
 
   async getContacts() {
-    const submissionData = await Requests.getFormSubmissions(this.props.formID);
+    const submissionData = await Requests.getFormSubmissions(this.state.ID);
     return submissionData.data.content;
   }
 
@@ -44,8 +50,6 @@ class ContactList extends React.Component {
         ],
       });
     });
-
-    console.log('AFTER STATE', this.state);
   }
 
   render() {

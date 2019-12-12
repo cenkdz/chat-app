@@ -3,7 +3,6 @@ const Utils = {
   isAuthorized() {
     if (!window.localStorage.getItem('appKey')) {
       window.location.href = '/';
-      alert('You are not authorized');
       return false;
     }
     return true;

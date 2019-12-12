@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Utils from '../../utils/utils';
 import Requests from '../../apiRequests';
-import Form from '../Form/Form';
 
 class Forms extends React.Component {
   constructor(props) {
@@ -10,11 +9,12 @@ class Forms extends React.Component {
     this.state = {
       forms: [],
     };
+
+    console.log('Forms props is:', props);
   }
 
   componentDidMount() {
     Utils.isAuthorized();
-
     this.setForms();
   }
 
@@ -28,21 +28,32 @@ class Forms extends React.Component {
 
   render() {
     return (
+      <div className="navbar">
+        <div className="dropdown">
+          <div className="formInfo">
+            <button>
+              <h1>Please select a form</h1>
+            </button>
+          </div>
+          <div className="dropdown-content">
+            {this.state.forms.map((form) => (
+              <div>
+                <Link
+                  to={{
+                    pathname: '/home',
+                    state: {
+                      formID: form.id,
+                      formTitle: form.title,
+                    },
+                  }}
+                >
+                  {form.title}
 
-
-      <div>
-        <h1>Forms</h1>
-        <strong>Select a Form</strong>
-        <ul>
-          {this.state.forms.map((form, index) => (
-            <div key={index}>
-              <li>
-                <Link to={`/forms/${form.id}`}>{form.title}</Link>
-              </li>
-            </div>
-          ))}
-        </ul>
-        <hr />
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     );
   }

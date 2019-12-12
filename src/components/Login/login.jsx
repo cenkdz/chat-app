@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Requests from '../../apiRequests';
 
 class Login extends React.Component {
@@ -38,7 +39,7 @@ class Login extends React.Component {
 
     console.log(response);
 
-    // window.location.href = '/forms';
+    window.location.href = '/home';
   }
 
   render() {

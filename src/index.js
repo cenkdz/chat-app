@@ -6,33 +6,17 @@ import {
 import './index.css';
 import App from './App';
 import Login from './components/Login/login';
-import Forms from './components/Forms/forms';
-import Form from './components/Form/Form';
+
 import * as serviceWorker from './serviceWorker';
 import Notfound from './notfound';
 
 const routing = (
   <Router>
-    <div>
-      {/* <ul>
-        <li>
-          <Link to="/">Login</Link>
-        </li>
-        <li>
-          <Link to="/forms">Forms</Link>
-        </li>
-        <li>
-          <Link to="/home">Home</Link>
-        </li>
-      </ul> */}
-      <hr />
-      <Switch>
-        <Route exact path="/" component={Login} />
-        <Route exact path="/forms" component={Forms} />
-        <Route path="/forms/:formid" component={App} />
-        <Route component={Notfound} />
-      </Switch>
-    </div>
+    <Switch>
+      <Route exact path="/" component={Login} />
+      <Route exact path="/home" component={App} />
+      <Route component={Notfound} />
+    </Switch>
   </Router>
 );
 ReactDOM.render(routing, document.getElementById('root'));

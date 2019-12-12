@@ -5,23 +5,23 @@ import './App.css';
 import UserInfo from './components/UserInfo/UserInfo';
 import ContactList from './components/ContactList/ContactList';
 import MessageList from './components/MessageList/MessageList';
-import FormInfo from './components/FormInfo/FormInfo';
+import Forms from './components/Forms/forms';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      formID: props.location.pathname.substring(props.location.pathname.lastIndexOf('/') + 1),
-    };
   }
 
+
+  componentDidUpdate() {
+    window.location.reload();
+  }
 
   render() {
     return (
       <div className="container">
-        <p>{this.state.formID}</p>
         <header className="App-header">
-          <FormInfo />
+          <Forms forms={this.props} />
         </header>
         <div className="topDiv">
           <UserInfo />
@@ -29,7 +29,7 @@ class App extends React.Component {
         </div>
         <div className="middleDiv">
           <div className="middleLeftDiv">
-            <ContactList formID={this.state.formID} />
+            <ContactList forms={this.props} />
           </div>
           <MessageList />
         </div>
