@@ -8,9 +8,8 @@ class Forms extends React.Component {
     super(props);
     this.state = {
       forms: [],
+      title: 'Please select a form',
     };
-
-    console.log('Forms props is:', props);
   }
 
   componentDidMount() {
@@ -21,18 +20,21 @@ class Forms extends React.Component {
   async setForms() {
     const formData = await Requests.getForms();
 
-    this.setState({
-      forms: [...formData[0].data.content],
-    });
+    if (formData !== false) {
+      this.setState({
+        forms: [...formData[0].data.content],
+      });
+    }
   }
+
 
   render() {
     return (
       <div className="navbar">
         <div className="dropdown">
           <div className="formInfo">
-            <button>
-              <h1>Please select a form</h1>
+            <button type="button">
+              <h1>{this.state.title}</h1>
             </button>
           </div>
           <div className="dropdown-content">

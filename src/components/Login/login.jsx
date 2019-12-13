@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Requests from '../../apiRequests';
 
 class Login extends React.Component {
@@ -15,7 +14,7 @@ class Login extends React.Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     // Utils.isAuthorized();
   }
 

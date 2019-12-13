@@ -8,7 +8,7 @@ import App from './App';
 import Login from './components/Login/login';
 
 import * as serviceWorker from './serviceWorker';
-import Notfound from './notfound';
+import Notfound from './components/NotFound/Notfound';
 
 const routing = (
   <Router>

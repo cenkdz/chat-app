@@ -10,8 +10,6 @@ class MessageBox extends React.Component {
   keyPress(e) {
     if (e.key === 'Enter') {
       const date = moment().format('HH:mm');
-      console.log('this is date');
-      console.log(date);
       this.props.enterHandler(e.target.value, date);
 
       e.target.value = '';

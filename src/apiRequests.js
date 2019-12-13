@@ -55,6 +55,7 @@ const Requests = {
 
       return data;
     }
+    return false;
   },
 
   async getFormSubmissions(formID) {
@@ -72,6 +73,8 @@ const Requests = {
 
       return data[0];
     }
+
+    return false;
   },
 
 };
