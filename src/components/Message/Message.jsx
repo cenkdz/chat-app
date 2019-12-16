@@ -1,17 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import shortid from '../../libs/shortid';
 
-const Message = (props) => (
-  <div className="middleRightDiv">
-    {props.messages.map((message) => (
-      <div className="userMessage" key={shortid.generate()}>
-        <p>{message.message}</p>
-        <span>{message.time}</span>
+function Message(props) {
+  console.log('THIS IS MESSAGE PROPS', props.messages);
+  let arr = [];
+  props.messages.forEach((element) => {
+    arr = [...element];
+  });
+
+  return (
+    <div className="middleRightDiv">
+      <div className="userMessage">
+        {arr.map((message, i) => (
+          <div>
+            <p key={i}>{message.message}</p>
+            <span>{message.time}</span>
+          </div>
+        ))}
       </div>
-    ))}
-  </div>
-);
+    </div>
+  );
+}
 
 Message.defaultProps = {
   messages: {

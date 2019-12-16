@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.dea61b38.chunk.css",
+    "main.js": "/static/js/main.cc81eeeb.chunk.js",
+    "main.js.map": "/static/js/main.cc81eeeb.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.8d77c88f.js",
+    "runtime-main.js.map": "/static/js/runtime-main.8d77c88f.js.map",
+    "static/js/2.775d0775.chunk.js": "/static/js/2.775d0775.chunk.js",
+    "static/js/2.775d0775.chunk.js.map": "/static/js/2.775d0775.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.dc72aeea3357491591f2c24946993535.js": "/precache-manifest.dc72aeea3357491591f2c24946993535.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.dea61b38.chunk.css.map": "/static/css/main.dea61b38.chunk.css.map",
+    "static/js/2.775d0775.chunk.js.LICENSE": "/static/js/2.775d0775.chunk.js.LICENSE",
+    "static/media/cavatar.png": "/static/media/cavatar.1de9dd27.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8d77c88f.js",
+    "static/js/2.775d0775.chunk.js",
+    "static/css/main.dea61b38.chunk.css",
+    "static/js/main.cc81eeeb.chunk.js"
+  ]
+}

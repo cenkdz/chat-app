@@ -31,7 +31,6 @@ const Requests = {
         if (Utils.validateResponse(response) !== false) {
           data.push(response);
           localStorage.setItem('appKey', response.data.content.appKey);
-          console.log('asdjhbasdkjhasbdjkhasbduhsad');
         }
       })
       .catch((response) => { });

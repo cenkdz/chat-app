@@ -27,7 +27,6 @@ class Forms extends React.Component {
     }
   }
 
-
   render() {
     return (
       <div className="navbar">
@@ -50,7 +49,6 @@ class Forms extends React.Component {
                   }}
                 >
                   {form.title}
-
                 </Link>
               </div>
             ))}
