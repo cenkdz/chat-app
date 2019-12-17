@@ -34,11 +34,10 @@ class Login extends React.Component {
     bodyFormData.append('appName', 'ChatApp');
 
     const response = await Requests.login(bodyFormData);
-    console.log('Login response: ', response);
 
-    console.log(response);
-
-    window.location.href = '/home';
+    if (response !== undefined) {
+      this.props.history.push('/home/');
+    }
   }
 
   render() {

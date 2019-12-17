@@ -9,31 +9,26 @@ import MessageList from './components/MessageList/MessageList';
 import Forms from './components/Forms/forms';
 
 import 'firebase/analytics';
-import 'firebase/auth';
-import 'firebase/firestore';
 import 'firebase/database';
-import 'firebase/storage';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyDq5VA2zHx6-ecl0INAfxlEWfz3u9YLSXQ',
-  authDomain: 'chatapp-e24fd.firebaseapp.com',
-  databaseURL: 'https://chatapp-e24fd.firebaseio.com',
-  projectId: 'chatapp-e24fd',
-  storageBucket: 'chatapp-e24fd.appspot.com',
-  messagingSenderId: '383365689256',
-  appId: '1:383365689256:web:238ed22ff84598c03ef79d',
-  measurementId: 'G-NWFWFD29LB',
+  apiKey: process.env.REACT_APP_apiKey,
+  authDomain: process.env.REACT_APP_authDomain,
+  databaseURL: process.env.REACT_APP_databaseURL,
+  projectId: process.env.REACT_APP_projectId,
+  storageBucket: process.env.REACT_APP_storageBucket,
+  messagingSenderId: process.env.REACT_APP_messagingSenderId,
+  appId: process.env.REACT_APP_appId,
+  measurementId: process.env.REACT_APP_measurementId,
 };
 
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
-console.log('APP INSTALLED');
 
 class App extends React.Component {
   componentDidUpdate() {
     window.location.reload();
   }
-
 
   render() {
     if (!Utils.isAuthorized()) {

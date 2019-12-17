@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Utils from '../../utils/utils';
 import Requests from '../../apiRequests';
+import shortid from '../../libs/shortid';
 
 class Forms extends React.Component {
   constructor(props) {
@@ -21,9 +22,11 @@ class Forms extends React.Component {
     const formData = await Requests.getForms();
 
     if (formData !== false) {
-      this.setState({
-        forms: [...formData[0].data.content],
-      });
+      if (formData[0].data.content !== undefined) {
+        this.setState({
+          forms: [...formData[0].data.content],
+        });
+      }
     }
   }
 
@@ -38,7 +41,7 @@ class Forms extends React.Component {
           </div>
           <div className="dropdown-content">
             {this.state.forms.map((form) => (
-              <div>
+              <div key={shortid.generate()}>
                 <Link
                   to={{
                     pathname: '/home',

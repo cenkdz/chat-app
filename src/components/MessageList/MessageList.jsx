@@ -7,11 +7,10 @@ import 'firebase/analytics';
 import 'firebase/auth';
 import 'firebase/firestore';
 
-
 class MessageList extends React.Component {
   constructor(props) {
     super(props);
-    this.storeMessages = this.storeMessages.bind(this);
+    this.storeMessage = this.storeMessage.bind(this);
     this.state = {
       messages: [],
     };
@@ -25,13 +24,11 @@ class MessageList extends React.Component {
         this.setState({
           messages: [...this.state.messages, Object.values(currentMessages)],
         });
-        console.log(this.state.messages);
       }
     });
   }
 
-
-  storeMessages(messageInput, currentTime) {
+  storeMessage(messageInput, currentTime) {
     const messageObj = {
       message: messageInput,
       time: currentTime,
@@ -47,7 +44,7 @@ class MessageList extends React.Component {
           <span>10:30</span>
         </div>
         <Message messages={this.state.messages} />
-        <MessageBox enterHandler={this.storeMessages} />
+        <MessageBox enterHandler={this.storeMessage} />
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React from 'react';
 import Requests from '../../apiRequests';
 import Contact from '../Contact/Contact';
+import shortid from '../../libs/shortid';
 
 class ContactList extends React.Component {
   constructor(props) {
@@ -28,36 +29,34 @@ class ContactList extends React.Component {
   async getNamesFromSubmissions() {
     let emails = [];
 
-    const submissionData = await this.getContacts();
+    const submissionData = await this.getContacts() || [];
 
-    if (submissionData !== undefined) {
-      submissionData.forEach((submission) => {
-        const fields = submission.answers;
-        const values = Object.values(fields);
-        values.forEach((value) => {
-          if (String(value.answer).match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi) && value.answer !== undefined) {
-            emails.push(value.answer);
-          }
-        });
+    submissionData.forEach((submission) => {
+      const fields = submission.answers;
+      const values = Object.values(fields);
+      values.forEach((value) => {
+        if (String(value.answer).match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi) && value.answer !== undefined) {
+          emails.push(value.answer);
+        }
       });
-      // Removing duplicates
-      emails = [...new Set(emails)];
+    });
 
-      emails.forEach((email) => {
-        this.setState({
-          contacts: [...this.state.contacts,
-            email,
-          ],
-        });
-      });
-    }
+    // Removing duplicates
+    emails = [...new Set(emails)];
+
+    this.setState({
+      contacts: [
+        ...this.state.contacts,
+        ...emails,
+      ],
+    });
   }
 
   render() {
     return (
       <div>
         {this.state.contacts.map((contact) => (
-          <Contact contact={contact} />
+          <Contact key={shortid.generate()} contact={contact} />
         ))}
       </div>
     );

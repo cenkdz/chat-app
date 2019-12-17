@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import shortid from '../../libs/shortid';
 
 function Message(props) {
-  console.log('THIS IS MESSAGE PROPS', props.messages);
   let arr = [];
+
   props.messages.forEach((element) => {
     arr = [...element];
   });
@@ -11,9 +12,9 @@ function Message(props) {
   return (
     <div className="middleRightDiv">
       <div className="userMessage">
-        {arr.map((message, i) => (
-          <div>
-            <p key={i}>{message.message}</p>
+        {arr.map((message) => (
+          <div key={shortid.generate()}>
+            <p>{message.message}</p>
             <span>{message.time}</span>
           </div>
         ))}

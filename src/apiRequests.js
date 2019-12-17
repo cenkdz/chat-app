@@ -33,7 +33,9 @@ const Requests = {
           localStorage.setItem('appKey', response.data.content.appKey);
         }
       })
-      .catch((response) => { });
+      .catch((error) => {
+        console.log(error);
+      });
 
     return data[0];
   },
@@ -44,12 +46,10 @@ const Requests = {
       const data = [];
       await axios.get(`https://api.jotform.com/user/forms?apikey=${getAppKey()}&orderby=id`)
         .then((response) => {
-          console.log(response);
           data.push(response);
         })
         .catch((error) => {
           console.log(error);
-          data.push(error);
         });
 
       return data;
@@ -62,12 +62,10 @@ const Requests = {
       const data = [];
       await axios.get(`https://api.jotform.com/form/${formID}/submissions?apikey=${getAppKey()}`)
         .then((response) => {
-          console.log('SUBMISSION RESPONSE', response);
           data.push(response);
         })
         .catch((error) => {
           console.log(error);
-          data.push(error);
         });
 
       return data[0];

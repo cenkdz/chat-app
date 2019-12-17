@@ -1,10 +1,7 @@
 const Utils = {
 
   isAuthorized() {
-    if (!window.localStorage.getItem('appKey')) {
-      return false;
-    }
-    return true;
+    return window.localStorage.getItem('appKey');
   },
 
   validateResponse(response) {
