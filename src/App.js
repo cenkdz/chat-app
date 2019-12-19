@@ -26,9 +26,21 @@ firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.logout = this.logout.bind(this);
+  }
+
   componentDidUpdate() {
     window.location.reload();
   }
+
+  logout() {
+    localStorage.removeItem('appKey');
+    sessionStorage.clear();
+    this.props.history.push('/');
+  }
+
 
   render() {
     if (!Utils.isAuthorized()) {
@@ -37,6 +49,7 @@ class App extends React.Component {
     return (
       <div className="container">
         <header className="App-header">
+          <button onClick={this.logout} className="logoutButton" type="button">Log Out</button>
           <Forms forms={this.props} />
         </header>
         <div className="topDiv">

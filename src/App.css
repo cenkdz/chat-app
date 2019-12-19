@@ -194,3 +194,9 @@ button {
   border: none;
   background-color: #ffffff;
 }
+
+.logoutButton {
+  border: 1px solid black;
+  margin-left: 90%;
+  cursor: pointer;
+}
