@@ -26,19 +26,49 @@ firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
 class App extends React.Component {
+  // 92653274087969
   constructor(props) {
     super(props);
+    console.log('APP PROPS', this.props);
+    this.state = {
+      formID: '',
+      contactName: '',
+    };
+    console.log('app state', this.state);
     this.logout = this.logout.bind(this);
-  }
+    this.parentFunc = this.parentFunc.bind(this);
+    this.setFormID = this.setFormID.bind(this);
 
-  componentDidUpdate() {
-    window.location.reload();
+    console.log('APP STATE ID CHANGED');
+    console.log(this.state.formID);
   }
 
   logout() {
     localStorage.removeItem('appKey');
     sessionStorage.clear();
+    // Clear history?? ->
     this.props.history.push('/');
+  }
+
+  async setFormID2(ID) {
+    console.log(ID);
+    console.log('STATE BEFORE', this.state);
+    await this.setState({ formID: ID });
+    console.log('STATE AFTER', this.state);
+  }
+
+  setFormID(ID) {
+    console.log(ID);
+    console.log('STATE BEFORE', this.state);
+    this.setState({ formID: ID }, () => {
+      console.log('STATE AFTER', this.state);
+    });
+  }
+
+  async parentFunc(name) {
+    await this.setState({ contactName: name });
+    console.log('DONE');
+    console.log(this.state.contactName);
   }
 
 
@@ -46,22 +76,33 @@ class App extends React.Component {
     if (!Utils.isAuthorized()) {
       return <Redirect to="/" />;
     }
+
+    const { formID, contactName } = this.state;
     return (
       <div className="container">
         <header className="App-header">
+          {/* TRY TO FIND ANOTHER APPROACH */}
+          <h1>{localStorage.getItem('name')}</h1>
           <button onClick={this.logout} className="logoutButton" type="button">Log Out</button>
-          <Forms forms={this.props} />
+          <Forms setFormID={this.setFormID} />
         </header>
         <div className="topDiv">
           <UserInfo />
           <div className="topRight" />
         </div>
-        <div className="middleDiv">
-          <div className="middleLeftDiv">
-            <ContactList forms={this.props} />
-          </div>
-          <MessageList />
-        </div>
+        {
+          formID ? (
+            <div className="middleDiv">
+              <div className="middleLeftDiv">
+                <ContactList ID={formID} parentCallback={this.parentFunc} />
+              </div>
+              {
+                contactName ? (<MessageList senderName={contactName} />) : null
+              }
+            </div>
+          ) : null
+        }
+
       </div>
     );
   }

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Utils from '../../utils/utils';
 import Requests from '../../apiRequests';
 import shortid from '../../libs/shortid';
@@ -41,18 +40,8 @@ class Forms extends React.Component {
           </div>
           <div className="dropdown-content">
             {this.state.forms.map((form) => (
-              <div key={shortid.generate()}>
-                <Link
-                  to={{
-                    pathname: '/home',
-                    state: {
-                      formID: form.id,
-                      formTitle: form.title,
-                    },
-                  }}
-                >
-                  {form.title}
-                </Link>
+              <div onClick={() => this.props.setFormID(form.id)} key={shortid.generate()}>
+                {form.title}
               </div>
             ))}
           </div>

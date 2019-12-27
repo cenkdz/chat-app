@@ -9,11 +9,14 @@ function Message(props) {
     arr = [...element];
   });
 
+  console.log(props);
+
   return (
     <div className="middleRightDiv">
       <div className="userMessage">
         {arr.map((message) => (
           <div key={shortid.generate()}>
+            <h5>{message.name}</h5>
             <p>{message.message}</p>
             <span>{message.time}</span>
           </div>

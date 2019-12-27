@@ -8,29 +8,34 @@ class ContactList extends React.Component {
     super(props);
     this.state = {
       contacts: [],
-      ID: [],
     };
-    if (props.forms.location.state !== undefined) {
-      this.state.ID = props.forms.location.state.formID;
+  }
+
+  async componentDidMount() {
+    console.log('COMPONENT MOUNTED');
+    await this.getNamesFromSubmissions(this.props.ID);
+    console.log('CONTACTLSIT', this.props.ID);
+  }
+
+  async componentWillReceiveProps(nextProps) {
+    console.log('next: ', nextProps, 'this:', this.props);
+    if (nextProps.ID !== this.props.ID) {
+      await this.getNamesFromSubmissions(nextProps.ID);
     }
   }
 
-  componentDidMount() {
-    this.getNamesFromSubmissions();
-  }
-
-  async getContacts() {
-    const submissionData = await Requests.getFormSubmissions(this.state.ID);
+  async getContacts(formID) {
+    const submissionData = await Requests.getFormSubmissions(formID);
+    console.log('SUBMISSION DATA', submissionData);
     if (submissionData !== false) {
       return submissionData.data.content;
     }
   }
 
-  async getNamesFromSubmissions() {
+  async getNamesFromSubmissions(formID) {
     let emails = [];
 
-    const submissionData = await this.getContacts() || [];
-
+    const submissionData = await this.getContacts(formID) || [];
     submissionData.forEach((submission) => {
       const fields = submission.answers;
       const values = Object.values(fields);
@@ -44,20 +49,23 @@ class ContactList extends React.Component {
     // Removing duplicates
     emails = [...new Set(emails)];
 
-    this.setState({
-      contacts: [
-        ...this.state.contacts,
-        ...emails,
-      ],
+    await this.setState({
+      contacts: [...emails],
     });
   }
 
+  renderContacts() {
+    return this.state.contacts.map((contact) => (
+      <Contact key={shortid.generate()} contact={contact} parentCallback={this.props.parentCallback} />
+    ));
+  }
+
+
   render() {
+    console.log('render', this.state.contacts);
     return (
       <div>
-        {this.state.contacts.map((contact) => (
-          <Contact key={shortid.generate()} contact={contact} />
-        ))}
+        {this.renderContacts()}
       </div>
     );
   }

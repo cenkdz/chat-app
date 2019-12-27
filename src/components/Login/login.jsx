@@ -14,9 +14,6 @@ class Login extends React.Component {
     };
   }
 
-  async componentDidMount() {
-    // Utils.isAuthorized();
-  }
 
   handleChange({ target }) {
     this.setState({

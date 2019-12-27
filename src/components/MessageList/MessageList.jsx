@@ -17,7 +17,9 @@ class MessageList extends React.Component {
   }
 
   componentDidMount() {
-    firebase.database().ref('messages/').on('value', (snapshot) => {
+    const messageRef = firebase.database().ref('messages/');
+
+    messageRef.on('value', (snapshot) => {
       const currentMessages = snapshot.val();
 
       if (currentMessages != null) {
@@ -28,8 +30,14 @@ class MessageList extends React.Component {
     });
   }
 
+  componentWillUnmount() {
+    const messageRef = firebase.database().ref('messages/');
+    messageRef.off();
+  }
+
   storeMessage(messageInput, currentTime) {
     const messageObj = {
+      name: localStorage.getItem('username'),
       message: messageInput,
       time: currentTime,
     };
@@ -39,11 +47,7 @@ class MessageList extends React.Component {
   render() {
     return (
       <div className="messageList">
-        <div className="contactMessage">
-          <p>Dummy message from ...</p>
-          <span>10:30</span>
-        </div>
-        <Message messages={this.state.messages} />
+        <Message messages={this.state.messages} senderName={this.props.senderName} />
         <MessageBox enterHandler={this.storeMessage} />
       </div>
     );

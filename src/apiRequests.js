@@ -23,7 +23,6 @@ const Requests = {
       config: {
         headers: {
           'Content-Type': 'multipart/form-data',
-          // eslint-disable-next-line quote-props
         },
       },
     })
@@ -31,6 +30,9 @@ const Requests = {
         if (Utils.validateResponse(response) !== false) {
           data.push(response);
           localStorage.setItem('appKey', response.data.content.appKey);
+          localStorage.setItem('username', response.data.content.username);
+          localStorage.setItem('name', response.data.content.name);
+          localStorage.setItem('email', response.data.content.email);
         }
       })
       .catch((error) => {

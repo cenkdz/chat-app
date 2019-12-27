@@ -90,6 +90,12 @@ input[type="text"] {
   float: left;
 }
 
+.contactInfo:hover {
+  background-color: gainsboro;
+  cursor: pointer;
+  
+}
+
 p {
   border-radius: 8px;
   margin-bottom: 0;
