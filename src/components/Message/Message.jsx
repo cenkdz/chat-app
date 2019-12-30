@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import shortid from '../../libs/shortid';
 
 function Message(props) {
@@ -9,8 +10,6 @@ function Message(props) {
     arr = [...element];
   });
 
-  console.log(props);
-
   return (
     <div className="middleRightDiv">
       <div className="userMessage">
@@ -18,23 +17,12 @@ function Message(props) {
           <div key={shortid.generate()}>
             <h5>{message.sender}</h5>
             <p>{message.message}</p>
-            <span>{message.time}</span>
+            <span>{moment(message.time).calendar()}</span>
           </div>
         ))}
       </div>
     </div>
   );
 }
-
-Message.defaultProps = {
-  messages: {
-    message: 'New Message',
-    time: '00:00',
-  },
-};
-
-Message.propTypes = {
-  messages: PropTypes.arrayOf(PropTypes.object),
-};
 
 export default Message;

@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 
 class MessageBox extends React.Component {
   constructor({ props }) {
@@ -9,9 +8,7 @@ class MessageBox extends React.Component {
 
   keyPress(e) {
     if (e.key === 'Enter') {
-      const date = moment().format('HH:mm');
-      this.props.enterHandler(e.target.value, date);
-
+      this.props.enterHandler(e.target.value);
       e.target.value = '';
     }
   }
