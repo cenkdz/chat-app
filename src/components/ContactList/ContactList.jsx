@@ -12,13 +12,11 @@ class ContactList extends React.Component {
   }
 
   async componentDidMount() {
-    console.log('COMPONENT MOUNTED');
+    console.log('CONTACTLIST COMPONENT MOUNTED');
     await this.getNamesFromSubmissions(this.props.ID);
-    console.log('CONTACTLSIT', this.props.ID);
   }
 
   async componentWillReceiveProps(nextProps) {
-    console.log('next: ', nextProps, 'this:', this.props);
     if (nextProps.ID !== this.props.ID) {
       await this.getNamesFromSubmissions(nextProps.ID);
     }
@@ -40,12 +38,12 @@ class ContactList extends React.Component {
       const fields = submission.answers;
       const values = Object.values(fields);
       values.forEach((value) => {
-        if (String(value.answer).match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi) && value.answer !== undefined) {
+        if (String(value.answer).match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi)
+        && value.answer !== undefined) {
           emails.push(value.answer);
         }
       });
     });
-
     // Removing duplicates
     emails = [...new Set(emails)];
 
@@ -56,13 +54,15 @@ class ContactList extends React.Component {
 
   renderContacts() {
     return this.state.contacts.map((contact) => (
-      <Contact key={shortid.generate()} contact={contact} parentCallback={this.props.parentCallback} />
+      <Contact
+        key={shortid.generate()}
+        contact={contact}
+        parentCallback={this.props.parentCallback}
+      />
     ));
   }
 
-
   render() {
-    console.log('render', this.state.contacts);
     return (
       <div>
         {this.renderContacts()}

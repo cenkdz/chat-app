@@ -5,8 +5,6 @@ class MessageBox extends React.Component {
   constructor({ props }) {
     super(props);
     this.keyPress = this.keyPress.bind(this);
-
-    console.log('Message box');
   }
 
   keyPress(e) {

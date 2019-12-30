@@ -14,7 +14,6 @@ class Login extends React.Component {
     };
   }
 
-
   handleChange({ target }) {
     this.setState({
       [target.name]: target.value,
@@ -47,7 +46,6 @@ class Login extends React.Component {
           value={this.state.username}
           onChange={this.handleChange}
         />
-
         <input
           type="password"
           name="password"

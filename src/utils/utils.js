@@ -15,12 +15,8 @@ const Utils = {
         }
       }
     }
-
     return false;
   },
-
-
 };
-
 
 export default Utils;

@@ -16,7 +16,7 @@ function Message(props) {
       <div className="userMessage">
         {arr.map((message) => (
           <div key={shortid.generate()}>
-            <h5>{message.name}</h5>
+            <h5>{message.sender}</h5>
             <p>{message.message}</p>
             <span>{message.time}</span>
           </div>

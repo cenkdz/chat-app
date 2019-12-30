@@ -42,7 +42,6 @@ const Requests = {
     return data[0];
   },
 
-
   async getForms() {
     if (getAppKey()) {
       const data = [];
@@ -77,6 +76,5 @@ const Requests = {
   },
 
 };
-
 
 export default Requests;

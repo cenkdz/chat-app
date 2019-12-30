@@ -13,13 +13,26 @@ class MessageList extends React.Component {
     this.storeMessage = this.storeMessage.bind(this);
     this.state = {
       messages: [],
+      messageRef: firebase.database().ref(`${this.props.formID}/`),
     };
   }
 
   componentDidMount() {
-    const messageRef = firebase.database().ref('messages/');
+    console.log('MESSAGE LIST COMPONENT DID MOUNT');
+    this.getMessagesFromCloud(this.state.messageRef);
+  }
 
-    messageRef.on('value', (snapshot) => {
+  async componentWillReceiveProps(nextProps) {
+    this.setState({ messageRef: firebase.database().ref(`${nextProps.formID}/`) });
+    this.getMessagesFromCloud(this.state.messageRef);
+  }
+
+  componentWillUnmount() {
+    this.state.messageRef.off();
+  }
+
+  getMessagesFromCloud(reference) {
+    reference.on('value', (snapshot) => {
       const currentMessages = snapshot.val();
 
       if (currentMessages != null) {
@@ -30,24 +43,21 @@ class MessageList extends React.Component {
     });
   }
 
-  componentWillUnmount() {
-    const messageRef = firebase.database().ref('messages/');
-    messageRef.off();
-  }
-
   storeMessage(messageInput, currentTime) {
     const messageObj = {
-      name: localStorage.getItem('username'),
+      sender: localStorage.getItem('username'),
       message: messageInput,
       time: currentTime,
+      reciever: this.props.recieverName,
     };
-    firebase.database().ref('messages/').push(messageObj);
+    firebase.database().ref(`${this.props.formID}/`).push(messageObj);
   }
 
   render() {
+    const { recieverName } = this.props;
     return (
       <div className="messageList">
-        <Message messages={this.state.messages} senderName={this.props.senderName} />
+        <Message messages={this.state.messages} recieverName={recieverName} />
         <MessageBox enterHandler={this.storeMessage} />
       </div>
     );

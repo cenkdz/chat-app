@@ -7,7 +7,6 @@ import UserInfo from './components/UserInfo/UserInfo';
 import ContactList from './components/ContactList/ContactList';
 import MessageList from './components/MessageList/MessageList';
 import Forms from './components/Forms/forms';
-
 import 'firebase/analytics';
 import 'firebase/database';
 
@@ -26,49 +25,33 @@ firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
 class App extends React.Component {
-  // 92653274087969
   constructor(props) {
     super(props);
-    console.log('APP PROPS', this.props);
     this.state = {
       formID: '',
-      contactName: '',
+      recieverName: '',
+      clicked: false,
     };
-    console.log('app state', this.state);
     this.logout = this.logout.bind(this);
     this.parentFunc = this.parentFunc.bind(this);
     this.setFormID = this.setFormID.bind(this);
-
-    console.log('APP STATE ID CHANGED');
-    console.log(this.state.formID);
   }
 
-  logout() {
-    localStorage.removeItem('appKey');
-    sessionStorage.clear();
-    // Clear history?? ->
-    this.props.history.push('/');
-  }
-
-  async setFormID2(ID) {
-    console.log(ID);
+  async setFormID(ID) {
     console.log('STATE BEFORE', this.state);
-    await this.setState({ formID: ID });
+    await this.setState({ formID: ID, clicked: false });
     console.log('STATE AFTER', this.state);
   }
 
-  setFormID(ID) {
-    console.log(ID);
-    console.log('STATE BEFORE', this.state);
-    this.setState({ formID: ID }, () => {
-      console.log('STATE AFTER', this.state);
-    });
+  logout() {
+    const { history } = this.props;
+    localStorage.removeItem('appKey');
+    sessionStorage.clear();
+    history.push('/');
   }
 
   async parentFunc(name) {
-    await this.setState({ contactName: name });
-    console.log('DONE');
-    console.log(this.state.contactName);
+    await this.setState({ recieverName: name, clicked: true });
   }
 
 
@@ -77,11 +60,10 @@ class App extends React.Component {
       return <Redirect to="/" />;
     }
 
-    const { formID, contactName } = this.state;
+    const { formID, recieverName, clicked } = this.state;
     return (
       <div className="container">
         <header className="App-header">
-          {/* TRY TO FIND ANOTHER APPROACH */}
           <h1>{localStorage.getItem('name')}</h1>
           <button onClick={this.logout} className="logoutButton" type="button">Log Out</button>
           <Forms setFormID={this.setFormID} />
@@ -97,12 +79,11 @@ class App extends React.Component {
                 <ContactList ID={formID} parentCallback={this.parentFunc} />
               </div>
               {
-                contactName ? (<MessageList senderName={contactName} />) : null
+                clicked ? (<MessageList recieverName={recieverName} formID={formID} />) : null
               }
             </div>
           ) : null
         }
-
       </div>
     );
   }
