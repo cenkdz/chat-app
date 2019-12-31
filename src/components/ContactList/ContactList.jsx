@@ -2,23 +2,40 @@ import React from 'react';
 import Requests from '../../apiRequests';
 import Contact from '../Contact/Contact';
 import shortid from '../../libs/shortid';
+import Loader from '../../Loader';
+import Utils from '../../utils/utils';
 
 class ContactList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       contacts: [],
+      loading: true,
     };
   }
 
   async componentDidMount() {
+    const { ID } = this.props;
     console.log('CONTACTLIST COMPONENT MOUNTED');
-    await this.getNamesFromSubmissions(this.props.ID);
+    this.getNamesFromSubmissions(ID);
+    await (Utils.wait(1000));
+    this.setState({
+      loading: false,
+    });
   }
 
+
   async componentWillReceiveProps(nextProps) {
-    if (nextProps.ID !== this.props.ID) {
-      await this.getNamesFromSubmissions(nextProps.ID);
+    const { ID } = this.props;
+    if (nextProps.ID !== ID) {
+      this.setState({
+        loading: true,
+      });
+      this.getNamesFromSubmissions(nextProps.ID);
+      await (Utils.wait(2000));
+      this.setState({
+        loading: false,
+      });
     }
   }
 
@@ -53,6 +70,8 @@ class ContactList extends React.Component {
   }
 
   renderContacts() {
+    console.log('contact rendered!!');
+
     return this.state.contacts.map((contact) => (
       <Contact
         key={shortid.generate()}
@@ -63,11 +82,12 @@ class ContactList extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        {this.renderContacts()}
-      </div>
-    );
+    const { contacts } = this.state;
+    if (this.state.loading) return <Loader />;
+
+    if (contacts.length > 0) return this.renderContacts();
+
+    if (contacts.length === 0) return <div className="noContact">No contacts were found in this form!</div>;
   }
 }
 

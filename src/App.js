@@ -37,9 +37,10 @@ class App extends React.Component {
     this.setFormID = this.setFormID.bind(this);
   }
 
-  async setFormID(ID) {
+
+  setFormID(ID) {
     console.log('STATE BEFORE', this.state);
-    await this.setState({ formID: ID, clicked: false });
+    this.setState({ formID: ID, clicked: false });
     console.log('STATE AFTER', this.state);
   }
 
@@ -50,21 +51,19 @@ class App extends React.Component {
     history.push('/');
   }
 
-  async parentFunc(name) {
-    await this.setState({ recieverName: name, clicked: true });
+  parentFunc(name) {
+    this.setState({ recieverName: name, clicked: true });
   }
 
 
   render() {
-    if (!Utils.isAuthorized()) {
-      return <Redirect to="/" />;
-    }
+    if (!Utils.isAuthorized()) { return <Redirect to="/" />; }
 
     const { formID, recieverName, clicked } = this.state;
     return (
+
       <div className="container">
         <header className="App-header">
-          <h1>{localStorage.getItem('name')}</h1>
           <button onClick={this.logout} className="logoutButton" type="button">Log Out</button>
           <Forms setFormID={this.setFormID} />
         </header>

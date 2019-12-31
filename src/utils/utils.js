@@ -17,6 +17,14 @@ const Utils = {
     }
     return false;
   },
+
+  sleep(milliseconds) {
+    return new Promise((resolve) => setTimeout(resolve, milliseconds));
+  },
+
+  async wait(milliseconds = 2000) {
+    await this.sleep(milliseconds);
+  },
 };
 
 export default Utils;

@@ -3,10 +3,7 @@ import avatar from './cavatar.png';
 
 
 function Contact(props) {
-  console.log('contact rendered!!');
-
   const { contact } = props;
-
 
   function onClick() {
     props.parentCallback(contact.substr(0, contact.indexOf('@')));
