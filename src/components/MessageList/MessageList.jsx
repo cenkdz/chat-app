@@ -75,21 +75,28 @@ class MessageList extends React.Component {
 
   render() {
     const { recieverName } = this.props;
-    const { messages } = this.state;
+    const { messages, loading } = this.state;
     console.log(this.props, this.state);
 
-    if (this.state.loading) return <Loader />;
+    if (loading) return <Loader />;
 
-    return (
-      <div className="messageList">
-        {
-          messages ? (
-            <Message messages={messages} recieverName={recieverName} />
-          ) : null
-        }
-        <MessageBox enterHandler={this.storeMessageToCloud} />
-      </div>
-    );
+    if (messages.length > 0) {
+      return (
+        <div className="messageList">
+          <Message messages={messages} recieverName={recieverName} />
+          <MessageBox enterHandler={this.storeMessageToCloud} />
+        </div>
+      );
+    }
+
+    if (messages.length === 0) {
+      return (
+        <div>
+          <div className="middleRightDiv"><h3>No messages were found. You can send the first message right now</h3></div>
+          <MessageBox enterHandler={this.storeMessageToCloud} />
+        </div>
+      );
+    }
   }
 }
 
