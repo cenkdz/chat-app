@@ -2,7 +2,7 @@ import React from 'react';
 import Requests from '../../apiRequests';
 
 class Login extends React.Component {
-  constructor({ props }) {
+  constructor(props) {
     super(props);
 
     this.login = this.login.bind(this);
@@ -21,36 +21,41 @@ class Login extends React.Component {
   }
 
   async login() {
+    const { username, password } = this.state;
+    const { history } = this.props;
+
     const bodyFormData = new FormData();
 
-    bodyFormData.append('username', this.state.username);
+    bodyFormData.append('username', username);
 
-    bodyFormData.append('password', this.state.password);
+    bodyFormData.append('password', password);
 
     bodyFormData.append('appName', 'ChatApp');
 
     const response = await Requests.login(bodyFormData);
 
     if (response !== undefined) {
-      this.props.history.push('/home/');
+      history.push('/home/');
     }
   }
 
   render() {
+    const { username, password } = this.state;
+
     return (
       <div className="loginDiv">
         <input
           type="text"
           name="username"
           placeholder="Enter username here..."
-          value={this.state.username}
+          value={username}
           onChange={this.handleChange}
         />
         <input
           type="password"
           name="password"
           placeholder="Enter password here..."
-          value={this.state.password}
+          value={password}
           onChange={this.handleChange}
         />
 

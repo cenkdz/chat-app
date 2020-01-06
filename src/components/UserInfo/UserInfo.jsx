@@ -1,5 +1,5 @@
 // import React from 'react';
 
-const UserInfo = (props) => localStorage.getItem('name');
+const UserInfo = () => localStorage.getItem('name');
 
 export default UserInfo;

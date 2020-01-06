@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import avatar from './cavatar.png';
 
@@ -9,11 +11,11 @@ function Contact(props) {
     props.parentCallback(contact.substr(0, contact.indexOf('@')));
   }
   return (
-    <div>
-      <div onClick={onClick} className="contactInfo">
-        <img src={avatar} alt="" height="50" width="50" />
-        <span className="recieverName">{contact}</span>
-      </div>
+    <div onClick={onClick} className="contactInfo">
+
+      <img src={avatar} alt="" height="50" width="50" />
+      <span className="recieverName">{contact}</span>
+
     </div>
   );
 }

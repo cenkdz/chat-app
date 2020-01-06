@@ -14,48 +14,49 @@ class MessageList extends React.Component {
 
     const { formID } = this.props;
 
+    this.listener = firebase.database().ref(`${formID}`);
+
     this.state = {
       messages: [],
-      formID,
       loading: true,
     };
   }
 
   async componentDidMount() {
-    this.getMessagesFromCloud();
-    await (Utils.wait(3000));
+    this.getMessagesFromCloud(this.props);
+    await (Utils.wait(2000));
     this.setState({
       loading: false,
     });
   }
 
-  async componentWillReceiveProps(nextProps) {
-    const { formID } = this.props;
-    console.log(nextProps);
-
+  // eslint-disable-next-line camelcase
+  async UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({
       loading: true,
     });
-    this.setState({ messages: [] });
-    this.getMessagesFromCloud();
-    await (Utils.wait(3000));
+    this.getMessagesFromCloud(nextProps);
+    await (Utils.wait(1000));
     this.setState({
       loading: false,
     });
   }
 
-  getMessagesFromCloud() {
-    const { formID, messages } = this.state;
-    const { recieverName } = this.props;
+  getMessagesFromCloud(props) {
+    this.listener.off();
 
-    const reference = firebase.database().ref(`${formID}`);
+    this.listener = firebase.database().ref(`${props.formID}`);
 
-    reference.orderByChild('reciever').equalTo(recieverName).on('value', (snapshot) => {
+    this.listener.orderByChild('reciever').equalTo(props.recieverName).on('value', (snapshot) => {
       const currentMessages = snapshot.val();
 
       if (currentMessages !== null) {
         this.setState({
-          messages: [...messages, Object.values(currentMessages)],
+          messages: [Object.values(currentMessages)],
+        });
+      } else if (currentMessages === null) {
+        this.setState({
+          messages: [],
         });
       }
     });
@@ -76,7 +77,6 @@ class MessageList extends React.Component {
   render() {
     const { recieverName } = this.props;
     const { messages, loading } = this.state;
-    console.log(this.props, this.state);
 
     if (loading) return <Loader />;
 
@@ -97,6 +97,8 @@ class MessageList extends React.Component {
         </div>
       );
     }
+
+    return null;
   }
 }
 

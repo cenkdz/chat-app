@@ -1,12 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import moment from 'moment';
 import shortid from '../../libs/shortid';
 
 function Message(props) {
   let arr = [];
 
-  props.messages.forEach((element) => {
+  const { messages } = props;
+
+  messages.forEach((element) => {
     arr = [...element];
   });
 

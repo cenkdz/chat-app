@@ -7,8 +7,9 @@ class MessageBox extends React.Component {
   }
 
   keyPress(e) {
+    const { enterHandler } = this.props;
     if (e.key === 'Enter') {
-      this.props.enterHandler(e.target.value);
+      enterHandler(e.target.value);
       e.target.value = '';
     }
   }

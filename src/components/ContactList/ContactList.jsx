@@ -12,11 +12,12 @@ class ContactList extends React.Component {
       contacts: [],
       loading: true,
     };
+
+    this.getContacts = this.getContacts.bind(this);
   }
 
   async componentDidMount() {
     const { ID } = this.props;
-    console.log('CONTACTLIST COMPONENT MOUNTED');
     this.getNamesFromSubmissions(ID);
     await (Utils.wait(1000));
     this.setState({
@@ -25,14 +26,15 @@ class ContactList extends React.Component {
   }
 
 
-  async componentWillReceiveProps(nextProps) {
+  // eslint-disable-next-line camelcase
+  async UNSAFE_componentWillReceiveProps(nextProps) {
     const { ID } = this.props;
     if (nextProps.ID !== ID) {
       this.setState({
         loading: true,
       });
       this.getNamesFromSubmissions(nextProps.ID);
-      await (Utils.wait(2000));
+      await (Utils.wait(1000));
       this.setState({
         loading: false,
       });
@@ -41,16 +43,18 @@ class ContactList extends React.Component {
 
   async getContacts(formID) {
     const submissionData = await Requests.getFormSubmissions(formID);
-    console.log('SUBMISSION DATA', submissionData);
+
     if (submissionData !== false) {
       return submissionData.data.content;
     }
+
+    return [];
   }
 
   async getNamesFromSubmissions(formID) {
     let emails = [];
 
-    const submissionData = await this.getContacts(formID) || [];
+    const submissionData = await this.getContacts(formID);
     submissionData.forEach((submission) => {
       const fields = submission.answers;
       const values = Object.values(fields);
@@ -70,24 +74,28 @@ class ContactList extends React.Component {
   }
 
   renderContacts() {
-    console.log('contact rendered!!');
+    const { contacts } = this.state;
+    const { parentCallback } = this.props;
 
-    return this.state.contacts.map((contact) => (
+    return contacts.map((contact) => (
       <Contact
         key={shortid.generate()}
         contact={contact}
-        parentCallback={this.props.parentCallback}
+        parentCallback={parentCallback}
       />
     ));
   }
 
   render() {
-    const { contacts } = this.state;
-    if (this.state.loading) return <Loader />;
+    const { contacts, loading } = this.state;
+
+    if (loading) return <Loader />;
 
     if (contacts.length > 0) return this.renderContacts();
 
     if (contacts.length === 0) return <div className="noContact">No contacts were found in this form!</div>;
+
+    return null;
   }
 }
 

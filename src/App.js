@@ -38,10 +38,8 @@ class App extends React.Component {
   }
 
 
-  setFormID(ID) {
-    console.log('STATE BEFORE', this.state);
-    this.setState({ formID: ID, clicked: false });
-    console.log('STATE AFTER', this.state);
+  async setFormID(ID) {
+    await this.setState({ formID: ID, clicked: false });
   }
 
   logout() {
@@ -51,17 +49,15 @@ class App extends React.Component {
     history.push('/');
   }
 
-  parentFunc(name) {
-    this.setState({ recieverName: name, clicked: true });
+  async parentFunc(name) {
+    await this.setState({ recieverName: name, clicked: true });
   }
-
 
   render() {
     if (!Utils.isAuthorized()) { return <Redirect to="/" />; }
 
     const { formID, recieverName, clicked } = this.state;
     return (
-
       <div className="container">
         <header className="App-header">
           <button onClick={this.logout} className="logoutButton" type="button">Log Out</button>

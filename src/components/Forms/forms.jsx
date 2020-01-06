@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import Utils from '../../utils/utils';
 import Requests from '../../apiRequests';
@@ -30,17 +32,20 @@ class Forms extends React.Component {
   }
 
   render() {
+    const { title, forms } = this.state;
+    const { setFormID } = this.props;
+
     return (
       <div className="navbar">
         <div className="dropdown">
           <div className="formInfo">
             <button type="button">
-              <h1>{this.state.title}</h1>
+              <h1>{title}</h1>
             </button>
           </div>
           <div className="dropdown-content">
-            {this.state.forms.map((form) => (
-              <div onClick={() => this.props.setFormID(form.id)} key={shortid.generate()}>
+            {forms.map((form) => (
+              <div onClick={() => setFormID(form.id)} key={shortid.generate()}>
                 {form.title}
               </div>
             ))}
