@@ -1,8 +1,9 @@
 .container {
+  color: #ffffff;
   height: 600px;
   width: 1150px;
   margin: 0 auto;
-  background-color: #ffffff;
+  background-color: #1F232C;
 }
 
 .topDiv {
@@ -14,33 +15,35 @@
   float: left;
   height: 50px;
   width: 30%;
-  background-color: #f5f5f5;
+  background-color: #222A35;
 }
 
 .topRight {
   float: right;
   height: 50px;
   width: 69.64%;
-  background-color: #ffffff;
+  background-color: #1F232C;
 }
 
 .middleDiv {
   height: 548px;
   width: 1150px;
+  background-color: 	#222A35;
+  border-radius: 10px;
 }
 
 .middleLeftDiv {
   float: left;
   height: 498px;
   width: 30%;
-  background-color: #f5f5f5;
+  background-color: 	#222A35;
 }
 
 .middleRightDiv {
   float: right;
   height: 440px;
   width: 70%;
-  background-color: #fdfdfd;
+  background-color: 	#222A35;
   overflow: scroll;
 }
 
@@ -88,7 +91,7 @@ input[type="text"] {
 }
 
 .contactInfo:hover {
-  background-color: gainsboro;
+  background-color: 	#2F3945;
   cursor: pointer;
   
 }
@@ -114,7 +117,7 @@ p {
 }
 
 .userMessage p {
-  background-color: #7e8cfc;
+  background-color: #60E174;
   color: #ffffff;
   padding: 10px;
 }
@@ -163,7 +166,7 @@ p {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f9f9f9;
+  background-color: #1F232C;  
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
@@ -172,7 +175,7 @@ p {
 /* Links inside the dropdown */
 .dropdown-content div {
   float: none;
-  color: black;
+  color: #ffffff;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
@@ -181,8 +184,9 @@ p {
 
 /* Add a grey background color to dropdown links on hover */
 .dropdown-content div:hover {
-  background-color: #ddd;
+  background-color: #2F3945;
   cursor: pointer;
+  border-left: 1px solid #ffffff;
 }
 
 /* Show the dropdown menu on hover */
@@ -192,16 +196,15 @@ p {
 
 button {
   border: none;
-  background-color: #ffffff;
+  background-color: #1F232C;
+  color: #ffffff;
 }
 
 .logoutButton {
-  border: 1px solid black;
+  border: 1px solid #000000;
   margin-left: 90%;
   cursor: pointer;
 }
-
-
 
 /* SPINNER */
 
@@ -213,7 +216,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #172123;
+  background-color: #1F232C;
+  color: #ffffff;
 }
 
 .center {
@@ -244,6 +248,10 @@ body, html {
   height: 100%;
 }
 
+header {
+  background-color: #1F232C;
+  color: #ffffff;
+}
 
 
 

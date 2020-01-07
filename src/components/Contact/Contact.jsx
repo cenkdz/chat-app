@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
+import Avatar from 'react-avatar';
 import avatar from './cavatar.png';
 
 
@@ -12,8 +13,7 @@ function Contact(props) {
   }
   return (
     <div onClick={onClick} className="contactInfo">
-
-      <img src={avatar} alt="" height="50" width="50" />
+      <Avatar name={contact} size="50" />
       <span className="recieverName">{contact}</span>
 
     </div>
