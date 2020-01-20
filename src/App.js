@@ -59,12 +59,14 @@ class App extends React.Component {
     const { formID, recieverName, clicked } = this.state;
     return (
       <div className="container">
-        <header className="App-header">
+        <div className="infoDiv">
           <button onClick={this.logout} className="logoutButton" type="button">Log Out</button>
+          <UserInfo />
+        </div>
+        <header className="App-header">
           <Forms setFormID={this.setFormID} />
         </header>
         <div className="topDiv">
-          <UserInfo />
           <div className="topRight" />
         </div>
         {

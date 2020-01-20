@@ -25,7 +25,6 @@ class ContactList extends React.Component {
     });
   }
 
-
   // eslint-disable-next-line camelcase
   async UNSAFE_componentWillReceiveProps(nextProps) {
     const { ID } = this.props;

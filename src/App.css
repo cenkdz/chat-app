@@ -15,7 +15,7 @@
   float: left;
   height: 50px;
   width: 30%;
-  background-color: #222A35;
+  background-color: #1F232C;
 }
 
 .topRight {
@@ -28,7 +28,7 @@
 .middleDiv {
   height: 548px;
   width: 1150px;
-  background-color: 	#222A35;
+  background-color: 	#1F232C;
   border-radius: 10px;
 }
 
@@ -36,14 +36,14 @@
   float: left;
   height: 498px;
   width: 30%;
-  background-color: 	#222A35;
+  background-color: 	#1F232C;
 }
 
 .middleRightDiv {
   float: right;
   height: 440px;
   width: 70%;
-  background-color: 	#222A35;
+  background-color: 	#1F232C;
   overflow: scroll;
 }
 
@@ -52,6 +52,8 @@
   width: 69.64%;
   height: 60px;
   background-color: rgba(176, 171, 171, 0.18);
+  margin-top: 4%;
+  border-radius: 8px;
 }
 
 .newMessageDiv input {
@@ -201,9 +203,10 @@ button {
 }
 
 .logoutButton {
-  border: 1px solid #000000;
+  border: 1px solid #1F232C;
   margin-left: 90%;
   cursor: pointer;
+  font-weight: 900;
 }
 
 /* SPINNER */
@@ -251,6 +254,13 @@ body, html {
 header {
   background-color: #1F232C;
   color: #ffffff;
+}
+
+
+.userInfo {
+  margin-top: 20px;
+  font-weight: 900;
+  padding-left: 90%;
 }
 
 
