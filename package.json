@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "avatar-initials": "^4.1.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.0",
     "firebase": "^7.15.1",
     "moment": "^2.26.0",
